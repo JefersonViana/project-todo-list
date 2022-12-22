@@ -9,6 +9,7 @@ const input = document.createElement('input');
 input.id = 'texto-tarefa';
 const button = document.createElement('button');
 button.id = 'criar-tarefa';
+button.innerText = 'Criar tarefa';
 const listaOrdenada = document.createElement('ol');
 listaOrdenada.id = 'lista-tarefas';
 
@@ -29,8 +30,13 @@ const listarTarefa = () => {
 
 button.addEventListener('click', listarTarefa);
 
+
 const addEstilo = (event) => {
   const alvo = event.target;
+  const listaDeTarefas = document.querySelectorAll('.tarefas');
+  for (let index = 0; index < listaDeTarefas.length; index += 1) {
+    listaDeTarefas[index].style.backgroundColor = '';
+  }
   alvo.style.backgroundColor = 'gray';
 };
 
