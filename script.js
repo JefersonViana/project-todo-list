@@ -21,6 +21,7 @@ body.appendChild(listaOrdenada);
 const listarTarefa = () => {
   const tarefa = input.value;
   const criarItem = document.createElement('li');
+  criarItem.className = 'tarefas';
   criarItem.innerText = tarefa;
   listaOrdenada.appendChild(criarItem);
   input.value = '';
@@ -28,3 +29,9 @@ const listarTarefa = () => {
 
 button.addEventListener('click', listarTarefa);
 
+const addEstilo = (event) => {
+  const alvo = event.target;
+  alvo.style.backgroundColor = 'gray';
+};
+
+listaOrdenada.addEventListener('click', addEstilo);
