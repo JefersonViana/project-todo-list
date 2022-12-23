@@ -12,12 +12,16 @@ button.id = 'criar-tarefa';
 button.innerText = 'Criar tarefa';
 const listaOrdenada = document.createElement('ol');
 listaOrdenada.id = 'lista-tarefas';
+const buttonClear = document.createElement('button');
+buttonClear.innerText = 'Apagar Tudo!';
+buttonClear.id = 'apaga-tudo';
 
 body.appendChild(header);
 body.appendChild(paragraph);
 body.appendChild(input);
 body.appendChild(button);
 body.appendChild(listaOrdenada);
+body.appendChild(buttonClear);
 
 const listarTarefa = () => {
   const tarefa = input.value;
@@ -52,4 +56,10 @@ const completed = (event) => {
   }
 };
 
+const clearList = () => {
+  listaOrdenada.innerHTML = '';
+};
+
 listaOrdenada.addEventListener('dblclick', completed);
+buttonClear.addEventListener('click', clearList);
+
