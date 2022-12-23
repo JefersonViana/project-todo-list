@@ -15,6 +15,9 @@ listaOrdenada.id = 'lista-tarefas';
 const buttonClear = document.createElement('button');
 buttonClear.innerText = 'Apagar Tudo!';
 buttonClear.id = 'apaga-tudo';
+const buttonRemoveItem = document.createElement('button');
+buttonRemoveItem.innerText = 'Apagar tarefas Concluídas';
+buttonRemoveItem.id = 'remover-finalizados';
 
 body.appendChild(header);
 body.appendChild(paragraph);
@@ -22,6 +25,7 @@ body.appendChild(input);
 body.appendChild(button);
 body.appendChild(listaOrdenada);
 body.appendChild(buttonClear);
+body.appendChild(buttonRemoveItem);
 
 const listarTarefa = () => {
   const tarefa = input.value;
@@ -48,11 +52,10 @@ listaOrdenada.addEventListener('click', addEstilo);
 
 const completed = (event) => {
   const alvo = event.target;
-  const listaDeTarefas = document.querySelectorAll('.tarefas');
-  if (alvo.className == 'completed') {
+  if (alvo.className == 'tarefas completed') {
     alvo.className = '';
   } else {
-    alvo.className = 'completed';
+    alvo.className = 'tarefas completed';
   }
 };
 
@@ -60,6 +63,22 @@ const clearList = () => {
   listaOrdenada.innerHTML = '';
 };
 
+const removeFinalizados = () => {
+  const listaDeTarefas = document.getElementsByClassName('completed');
+  for (let index = listaDeTarefas.length; index > 0; index--) {
+    listaDeTarefas[index - 1].remove();
+  }
+};
+
+// desta linha para baixo o código funciona, porém se eu inverter a ordem da erro.
+// const removeFinalizados = () => {
+//   const listaDeTarefas = document.getElementsByClassName('completed');
+//   for (let index = listaDeTarefas.length; index >= 0; index--) {
+//     console.log(listaDeTarefas[index]);
+//     listaDeTarefas[index].remove()
+//   }
+// };
 listaOrdenada.addEventListener('dblclick', completed);
 buttonClear.addEventListener('click', clearList);
+buttonRemoveItem.addEventListener('click', removeFinalizados);
 
