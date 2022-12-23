@@ -41,3 +41,24 @@ const addEstilo = (event) => {
 };
 
 listaOrdenada.addEventListener('click', addEstilo);
+
+// const completed = (event) => {
+//   const alvo = event.target;
+//   const listaDeTarefas = document.querySelectorAll('.tarefas');
+//   if (alvo.className == '') {
+//     for (let index = 0; index < listaDeTarefas.length; index += 1) {
+//       listaDeTarefas[index].className = '';
+//     }
+//     alvo.className = 'completed';
+//     console.log('if');
+//   } else {
+//     for (let index = 0; index < listaDeTarefas.length; index += 1) {
+//       listaDeTarefas[index].className = '';
+//       console.log('else');
+//     }
+//     alvo.className = '';
+//   }
+//   alvo.className = 'completed';
+// };
+
+// listaOrdenada.addEventListener('dblclick', completed);
