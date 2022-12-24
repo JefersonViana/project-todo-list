@@ -18,6 +18,9 @@ buttonClear.id = 'apaga-tudo';
 const buttonRemoveItem = document.createElement('button');
 buttonRemoveItem.innerText = 'Apagar tarefas Concluídas';
 buttonRemoveItem.id = 'remover-finalizados';
+const buttonSaveTarefas = document.createElement('button');
+buttonSaveTarefas.id = 'salvar-tarefas';
+buttonSaveTarefas.innerText = 'Salva página';
 
 body.appendChild(header);
 body.appendChild(paragraph);
@@ -26,6 +29,7 @@ body.appendChild(button);
 body.appendChild(listaOrdenada);
 body.appendChild(buttonClear);
 body.appendChild(buttonRemoveItem);
+body.appendChild(buttonSaveTarefas);
 
 const listarTarefa = () => {
   const tarefa = input.value;
@@ -37,7 +41,6 @@ const listarTarefa = () => {
 };
 
 button.addEventListener('click', listarTarefa);
-
 
 const addEstilo = (event) => {
   const alvo = event.target;
@@ -52,7 +55,7 @@ listaOrdenada.addEventListener('click', addEstilo);
 
 const completed = (event) => {
   const alvo = event.target;
-  if (alvo.className == 'tarefas completed') {
+  if (alvo.className === 'tarefas completed') {
     alvo.className = '';
   } else {
     alvo.className = 'tarefas completed';
@@ -65,7 +68,7 @@ const clearList = () => {
 
 const removeFinalizados = () => {
   const listaDeTarefas = document.getElementsByClassName('completed');
-  for (let index = listaDeTarefas.length; index > 0; index--) {
+  for (let index = listaDeTarefas.length; index > 0; index -= 1) {
     listaDeTarefas[index - 1].remove();
   }
 };
@@ -78,7 +81,21 @@ const removeFinalizados = () => {
 //     listaDeTarefas[index].remove()
 //   }
 // };
+
+// const reloadLista = () => {
+//   listaOrdenada.innerHTML = localStorage.getItem('lista');
+  
+// };
+
+const saveLista = () => {
+  localStorage.setItem('lista', listaOrdenada.innerHTML);
+};
+
+window.onload = () => {
+  listaOrdenada.innerHTML = localStorage.getItem('lista');
+};
+
 listaOrdenada.addEventListener('dblclick', completed);
 buttonClear.addEventListener('click', clearList);
 buttonRemoveItem.addEventListener('click', removeFinalizados);
-
+buttonSaveTarefas.addEventListener('click', saveLista);
